@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { navLinks } from "@/lib/data/nav-links";
+import { contactInfo } from "@/lib/data/contact";
 
 const resourceLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
@@ -63,15 +64,15 @@ export function Footer() {
           </h3>
           <div className="flex items-start gap-2 text-sm text-cream-200/80">
             <MapPin size={16} className="mt-0.5 shrink-0" />
-            <span>Global Governance Hub, Vasant Vihar, New Delhi, India</span>
+            <span>{contactInfo.address}</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-cream-200/80">
             <Mail size={16} className="shrink-0" />
-            <span>secretariat@neetimun.org</span>
+            <span>{contactInfo.email}</span>
           </div>
           <div className="flex items-center gap-2 text-sm text-cream-200/80">
             <Phone size={16} className="shrink-0" />
-            <span>+91 11 4059 9000</span>
+            <span>{contactInfo.phone}</span>
           </div>
         </div>
       </Container>
