@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProfileCard } from "@/components/ui/ProfileCard";
+import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { executiveBoard, departmentalHeads } from "@/lib/data/executive-board";
 
@@ -32,9 +33,7 @@ export function ExecutiveBoard() {
           <div className="flex items-center gap-6">
             {departmentalHeads.map((name) => (
               <div key={name} className="flex items-center gap-2">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-navy-900 font-display text-xs text-cream-50">
-                  {name.charAt(0)}
-                </span>
+                <Avatar name={name} size="xs" />
                 <span className="text-sm text-navy-900/80">{name}</span>
               </div>
             ))}

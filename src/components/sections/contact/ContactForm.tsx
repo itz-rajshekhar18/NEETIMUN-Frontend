@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
+import { Select } from "@/components/ui/Select";
+import { Label } from "@/components/ui/Label";
 import { inquiryCategories } from "@/lib/data/contact";
-
-const inputClasses =
-  "rounded-xl border border-border bg-cream-50 px-4 py-3 text-sm text-navy-900 placeholder:text-navy-900/40 focus:border-navy-900 focus:outline-none";
-
-const labelClasses =
-  "text-xs font-medium uppercase tracking-wide-label text-muted";
 
 export function ContactForm() {
   return (
@@ -15,41 +13,28 @@ export function ContactForm() {
       <form className="mt-8 flex flex-col gap-6">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label htmlFor="full-name" className={labelClasses}>
-              Full Name
-            </label>
-            <input
+            <Label htmlFor="full-name">Full Name</Label>
+            <Input
               id="full-name"
               name="full-name"
               type="text"
               placeholder="Ex. Hon. Jane Doe"
-              className={inputClasses}
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="email" className={labelClasses}>
-              Diplomatic Email
-            </label>
-            <input
+            <Label htmlFor="email">Diplomatic Email</Label>
+            <Input
               id="email"
               name="email"
               type="email"
               placeholder="official@organization.org"
-              className={inputClasses}
             />
           </div>
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="category" className={labelClasses}>
-            Inquiry Category
-          </label>
-          <select
-            id="category"
-            name="category"
-            defaultValue=""
-            className={inputClasses}
-          >
+          <Label htmlFor="category">Inquiry Category</Label>
+          <Select id="category" name="category" defaultValue="">
             <option value="" disabled>
               Select Protocol Tier
             </option>
@@ -58,19 +43,16 @@ export function ContactForm() {
                 {category}
               </option>
             ))}
-          </select>
+          </Select>
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="message" className={labelClasses}>
-            Official Statement / Message
-          </label>
-          <textarea
+          <Label htmlFor="message">Official Statement / Message</Label>
+          <Textarea
             id="message"
             name="message"
             rows={5}
             placeholder="Please provide a detailed formal inquiry..."
-            className={`${inputClasses} resize-none`}
           />
         </div>
 

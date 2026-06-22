@@ -33,7 +33,7 @@ export function CommitteeCard({
         className={cn(
           "relative h-48 bg-gradient-to-br",
           dark
-            ? "from-navy-700 to-navy-950"
+            ? "from-navy-700 to-navy-900"
             : "from-navy-800 to-navy-950",
         )}
       >

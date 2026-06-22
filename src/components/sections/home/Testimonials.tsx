@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Card } from "@/components/ui/Card";
+import { Avatar } from "@/components/ui/Avatar";
 import { testimonials } from "@/lib/data/testimonials";
 
 export function Testimonials() {
@@ -18,9 +19,11 @@ export function Testimonials() {
                 &ldquo;{testimonial.quote}&rdquo;
               </p>
               <div className="mt-auto flex items-center gap-3 border-t border-border pt-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-navy-900 font-display text-sm text-cream-50 transition-transform duration-300 ease-out group-hover:scale-110">
-                  {testimonial.name.charAt(0)}
-                </span>
+                <Avatar
+                  name={testimonial.name}
+                  size="sm"
+                  className="transition-transform duration-300 ease-out group-hover:scale-110"
+                />
                 <div className="flex flex-col">
                   <span className="text-sm font-medium text-navy-900">
                     {testimonial.name}
