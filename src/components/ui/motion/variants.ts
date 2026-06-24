@@ -16,22 +16,38 @@ export const HEADING_SCALE = 0.98;
 export const CARD_STAGGER = 0.15;
 export const CARD_SCALE = 0.96;
 
-export function fadeUpVariants(reduced: boolean, delay = 0, scale = 1): Variants {
+export type RevealDirection = "up" | "left" | "right";
+
+export function fadeVariants(
+  direction: RevealDirection,
+  reduced: boolean,
+  delay = 0,
+  scale = 1,
+): Variants {
   if (reduced) {
     return {
-      hidden: { opacity: 1, y: 0, scale: 1 },
-      visible: { opacity: 1, y: 0, scale: 1 },
+      hidden: { opacity: 1, y: 0, x: 0, scale: 1 },
+      visible: { opacity: 1, y: 0, x: 0, scale: 1 },
     };
   }
+  const hidden: Record<string, number> = { opacity: 0, scale };
+  if (direction === "up") hidden.y = 28;
+  else if (direction === "left") hidden.x = -24;
+  else hidden.x = 24;
   return {
-    hidden: { opacity: 0, y: 28, scale },
+    hidden,
     visible: {
       opacity: 1,
       y: 0,
+      x: 0,
       scale: 1,
       transition: { duration: DURATION, ease: EASE, delay },
     },
   };
+}
+
+export function fadeUpVariants(reduced: boolean, delay = 0, scale = 1): Variants {
+  return fadeVariants("up", reduced, delay, scale);
 }
 
 export function fadeInVariants(reduced: boolean, delay = 0): Variants {

@@ -27,7 +27,7 @@ export function PortfoliosPreview() {
           </Link>
         </div>
 
-        <CardGrid className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <CardGrid className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4" delayChildren={0.35}>
           {committees.map((committee) => (
             <CardReveal key={committee.tag}>
               <Card className="flex h-full flex-col gap-4">

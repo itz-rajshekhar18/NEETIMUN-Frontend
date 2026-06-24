@@ -3,7 +3,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProfileCard } from "@/components/ui/ProfileCard";
 import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
-import { CardGrid, CardReveal } from "@/components/ui/motion";
+import { CardGrid, CardReveal, StaggerContainer, FadeUp } from "@/components/ui/motion";
 import { executiveBoard, departmentalHeads } from "@/lib/data/executive-board";
 
 export function ExecutiveBoard() {
@@ -33,14 +33,16 @@ export function ExecutiveBoard() {
           <span className="text-xs font-medium uppercase tracking-wide-label text-muted">
             Departmental Heads
           </span>
-          <div className="flex flex-wrap items-center gap-6">
+          <StaggerContainer className="flex flex-wrap items-center gap-6" stagger={0.1} delayChildren={0.1}>
             {departmentalHeads.map((name) => (
-              <div key={name} className="flex items-center gap-2">
-                <Avatar name={name} size="xs" />
-                <span className="text-sm text-navy-900/80">{name}</span>
-              </div>
+              <FadeUp key={name} viewportTrigger={false}>
+                <div className="flex items-center gap-2">
+                  <Avatar name={name} size="xs" />
+                  <span className="text-sm text-navy-900/80">{name}</span>
+                </div>
+              </FadeUp>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </Container>
     </section>

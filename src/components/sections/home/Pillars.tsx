@@ -13,7 +13,7 @@ export function Pillars() {
           title="The Pillars of Neeti"
           align="left"
         />
-        <CardGrid className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <CardGrid className="grid grid-cols-1 gap-6 md:grid-cols-3" delayChildren={0.35}>
           {pillars.map((pillar) => (
             <CardReveal key={pillar.title}>
               <FeatureCard

@@ -126,6 +126,7 @@ export function Timeline({
           return (
             <CardReveal
               key={item.title}
+              direction={alignEnd ? "right" : "left"}
               className={cn(
                 "relative flex flex-col gap-2 pl-10 sm:w-1/2 sm:pl-0",
                 alignEnd

@@ -6,13 +6,13 @@ import { Parallax, Magnetic } from "@/components/ui/motion";
 export function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden bg-cream-100">
-      <Parallax range={14} className="pointer-events-none absolute inset-0">
+      <Parallax range={14} className="pointer-events-none absolute inset-0" fadeIn={{ delay: 0.6, duration: 1.2 }}>
         <div
           aria-hidden
           className="animate-float pointer-events-none absolute top-1/2 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold-400/30"
         />
       </Parallax>
-      <Parallax range={22} className="pointer-events-none absolute inset-0">
+      <Parallax range={22} className="pointer-events-none absolute inset-0" fadeIn={{ delay: 0.8, duration: 1.2 }}>
         <div
           aria-hidden
           className="animate-float-slow pointer-events-none absolute top-1/2 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-navy-900/10"
