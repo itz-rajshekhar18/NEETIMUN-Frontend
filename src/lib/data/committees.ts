@@ -12,7 +12,6 @@ export type Committee = {
   portfolioTypes: string[];
   badges: string[];
   icon: LucideIcon;
-  dark?: boolean;
   featured?: boolean;
   href: string;
 };
@@ -39,7 +38,6 @@ export const committees: Committee[] = [
     ],
     badges: ["Intelligence", "Security", "AI"],
     icon: EyeOff,
-    dark: true,
     featured: true,
     href: "/committees",
   },
@@ -65,7 +63,6 @@ export const committees: Committee[] = [
     ],
     badges: ["Future", "Climate", "Technology"],
     icon: Globe2,
-    dark: false,
     featured: true,
     href: "/committees",
   },
@@ -90,7 +87,6 @@ export const committees: Committee[] = [
     ],
     badges: ["United Nations", "Cybercrime", "Policy"],
     icon: Eye,
-    dark: false,
     featured: false,
     href: "/committees",
   },
@@ -115,7 +111,6 @@ export const committees: Committee[] = [
     ],
     badges: ["Politics", "India", "Governance"],
     icon: Landmark,
-    dark: false,
     featured: false,
     href: "/committees",
   },
@@ -142,7 +137,6 @@ export const committees: Committee[] = [
     ],
     badges: ["Media", "Journalism", "Public Discourse"],
     icon: Mic,
-    dark: false,
     featured: false,
     href: "/committees",
   },
@@ -161,7 +155,6 @@ export const committees: Committee[] = [
     portfolioTypes: [],
     badges: ["Press", "Journalism", "Media"],
     icon: Newspaper,
-    dark: false,
     featured: false,
     href: "/committees",
   },

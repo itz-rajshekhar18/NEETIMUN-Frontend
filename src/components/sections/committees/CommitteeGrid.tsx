@@ -24,7 +24,6 @@ export function CommitteeGrid() {
                     agenda={committee.agenda}
                     portfolioTypes={committee.portfolioTypes}
                     href={committee.href}
-                    dark={committee.dark}
                   />
                 </Magnetic>
               </Parallax>
