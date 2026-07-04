@@ -11,7 +11,7 @@ export function Testimonials() {
   const centerIndex = Math.floor(testimonials.length / 2);
 
   return (
-    <section id="testimonials" className="relative bg-cream-200/60 py-24">
+    <section id="testimonials" className="relative bg-cream-200/60 py-20">
       <SectionBackdrop variant="gold-tr" range={14} />
       <Container className="flex flex-col gap-14">
         <SectionHeading
