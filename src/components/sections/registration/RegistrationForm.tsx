@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Stepper } from "@/components/ui/Stepper";
 import { Button } from "@/components/ui/Button";
@@ -38,7 +38,6 @@ export function RegistrationForm({
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [referenceId, setReferenceId] = useState("");
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // Step 1 — committee & portfolio. The URL is the source of truth for the
   // selected committee, keyed by slug.
@@ -62,10 +61,13 @@ export function RegistrationForm({
   const portfolioOptions = selectedCommittee?.portfolioTypes ?? [];
   const hasPortfolios = portfolioOptions.length > 0;
 
-  // Scroll the card into view when the active step changes.
+  // Always open the Registration page at the top (hero) on a fresh load,
+  // overriding the browser's scroll restoration on reload / direct open.
+  // Runs once on mount only — never on step changes, edits, or URL syncs,
+  // so in-page scrolling is left untouched.
   useEffect(() => {
-    containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [step, submitted]);
+    window.scrollTo(0, 0);
+  }, []);
 
   function handleCommitteeChange(slug: string) {
     setSelected(slug);
@@ -125,10 +127,7 @@ export function RegistrationForm({
   }
 
   return (
-    <div
-      ref={containerRef}
-      className="mx-auto w-full max-w-3xl scroll-mt-24 rounded-3xl border border-border bg-cream-50/60 p-6 sm:p-10"
-    >
+    <div className="mx-auto w-full max-w-3xl rounded-3xl border border-border bg-cream-50/60 p-6 sm:p-10">
       <Stepper steps={steps} activeStep={submitted ? steps.length : step} />
 
       {submitted ? (
