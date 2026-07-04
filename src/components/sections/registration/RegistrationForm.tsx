@@ -244,6 +244,7 @@ export function RegistrationForm() {
                     : undefined
                 }
                 onConfirmChange={handleConfirmChange}
+                onEdit={setStep}
               />
 
               <div className="flex flex-col-reverse gap-3 border-t border-border pt-6 sm:flex-row sm:justify-between">
