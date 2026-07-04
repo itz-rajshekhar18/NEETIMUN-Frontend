@@ -12,9 +12,16 @@ export function ContactForm() {
   return (
     <div className="h-full rounded-2xl border border-border bg-cream-50 p-7 shadow-sm sm:rounded-3xl sm:p-9">
       {/* Card header */}
-      <h2 className="mb-7 font-display text-2xl text-navy-900 sm:text-3xl">
+      <h2 className="mb-4 font-display text-2xl text-navy-900 sm:text-3xl">
         Direct Inquiry
       </h2>
+
+      <p className="mb-7 text-sm leading-relaxed text-muted">
+        Our Secretariat reviews every inquiry with care and confidentiality.
+        Whether you are a delegate, institution, media representative, or
+        prospective partner, complete the form below and our team will respond
+        within 24–48 hours.
+      </p>
 
       {/* Fields */}
       <form className="flex flex-col gap-6">
