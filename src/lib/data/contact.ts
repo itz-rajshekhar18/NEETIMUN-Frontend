@@ -10,7 +10,7 @@ import {
 
 export const contactInfo = {
   address:
-    "Global Governance Hub, Vasant Vihar, New Delhi, Delhi 110057, India",
+    "Polaris School of Technology\nDivyaSree Technopolis\nA3, EPIP Zone, Brookefield\nBengaluru, Karnataka 560066",
   email: "secretariat@neetimun.org",
   phone: "+91 11 4059 9000",
   hours: "Monday – Friday · 9:00 – 18:00 IST",

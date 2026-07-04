@@ -21,7 +21,7 @@ function InfoItem({
         </span>
       </div>
       {/* Value */}
-      <p className="text-sm leading-relaxed text-cream-100/90">{value}</p>
+      <p className="whitespace-pre-line text-sm leading-relaxed text-cream-100/90">{value}</p>
     </div>
   );
 }
