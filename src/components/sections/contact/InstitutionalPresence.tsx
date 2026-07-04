@@ -1,72 +1,45 @@
-import { Globe, Mail, MapPin, Phone, Users } from "lucide-react";
-import { IconCircle } from "@/components/ui/IconCircle";
+import type { LucideIcon } from "lucide-react";
+import { Mail, MapPin, Phone, Timer } from "lucide-react";
 import { contactInfo } from "@/lib/data/contact";
+
+function InfoItem({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="py-4 first:pt-0 last:pb-0">
+      {/* Label row — small icon inline with uppercase text */}
+      <div className="mb-1 flex items-center gap-1.5">
+        <Icon size={11} className="text-gold-400/80" aria-hidden="true" />
+        <span className="text-[10px] font-semibold uppercase tracking-wide-label text-gold-400/80">
+          {label}
+        </span>
+      </div>
+      {/* Value */}
+      <p className="text-sm leading-relaxed text-cream-100/90">{value}</p>
+    </div>
+  );
+}
 
 export function InstitutionalPresence() {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-5 rounded-3xl bg-navy-950 p-8 text-cream-50">
-        <h3 className="font-display text-xl">Institutional Presence</h3>
+    <div className="rounded-2xl bg-navy-900 p-6 sm:rounded-3xl sm:p-7">
+      {/* Heading */}
+      <h2 className="mb-5 font-display text-xl text-cream-50 sm:text-2xl">
+        Institutional Presence
+      </h2>
 
-        <div className="flex flex-col gap-4">
-          <div className="flex items-start gap-3">
-            <MapPin size={18} className="mt-0.5 shrink-0 text-gold-400" />
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide-label text-gold-400">
-                Headquarters
-              </span>
-              <span className="text-sm text-cream-200/80">
-                {contactInfo.address}
-              </span>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <Mail size={18} className="mt-0.5 shrink-0 text-gold-400" />
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide-label text-gold-400">
-                Direct Channel
-              </span>
-              <span className="text-sm text-cream-200/80">
-                {contactInfo.email}
-              </span>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <Phone size={18} className="mt-0.5 shrink-0 text-gold-400" />
-            <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wide-label text-gold-400">
-                Liaison Office
-              </span>
-              <span className="text-sm text-cream-200/80">
-                {contactInfo.phone}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative h-48 overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-cream-200 to-border">
-        <span className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-cream-50 px-4 py-1.5 text-xs font-medium text-navy-900 shadow-sm">
-          <span className="h-2 w-2 rounded-full bg-gold-500" />
-          HQ Live Operations
-        </span>
-      </div>
-
-      <div className="flex flex-col gap-4 rounded-2xl border border-border bg-cream-50 p-6">
-        <span className="text-xs font-medium uppercase tracking-wide-label text-muted">
-          Global Diplomatic Network
-        </span>
-        <div className="flex items-center gap-3">
-          <IconCircle>
-            <Globe size={18} />
-          </IconCircle>
-          <IconCircle>
-            <Users size={18} />
-          </IconCircle>
-          <IconCircle>
-            <MapPin size={18} />
-          </IconCircle>
-        </div>
+      {/* Info items — tight dividers on dark surface */}
+      <div className="divide-y divide-cream-50/[0.08]">
+        <InfoItem icon={MapPin} label="Headquarters"      value={contactInfo.address} />
+        <InfoItem icon={Mail}   label="Direct Channel"    value={contactInfo.email} />
+        <InfoItem icon={Phone}  label="Liaison Office"    value={contactInfo.phone} />
+        <InfoItem icon={Timer}  label="Expected Response" value={contactInfo.responseTime} />
       </div>
     </div>
   );
