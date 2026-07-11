@@ -13,9 +13,9 @@ import { submitRegistration } from "@/lib/api/registrations";
 import { DelegateDetailsStep } from "./DelegateDetailsStep";
 import { ReviewStep } from "./ReviewStep";
 import { SuccessState } from "./SuccessState";
-import { submitRegistration } from "./submitRegistration";
 import {
   emptyDelegateDetails,
+  experienceLabel,
   validateDelegateDetails,
   type DelegateDetails,
   type DetailErrors,
@@ -141,19 +141,64 @@ export function RegistrationForm({
     setSubmitError("");
     setIsSubmitting(true);
     try {
-      const result = await submitRegistration({
-        committee: selectedCommittee,
+      const munExperience = details.munExperience;
+      const registration = await submitRegistration({
+        fullName: details.fullName,
+        email: details.email,
+        phone: details.phone,
+        institution: details.institution,
+        gradeOrYear: details.yearGrade,
+        committeePreference1: selectedCommittee?.tag ?? "",
         portfolio,
-        details,
+        city: details.city,
+        country: details.country,
+        courseStream: details.courseStream,
+        motivation: details.motivation,
+        priorMunExperience: munExperience !== "" && munExperience !== "first",
+        experienceDetails: experienceLabel(munExperience),
+        dietaryRestrictions: details.dietary,
+        emergencyContactName: details.emergencyName,
+        emergencyContactPhone: details.emergencyPhone,
+        emergencyContactRelationship: details.emergencyRelationship,
+        accessibilityNeeds: details.accessibility,
+        declarationAccepted: details.declaration && confirmChecked,
       });
-      setRegistrationId(result.registrationId);
+      setRegistrationId(
+        `NM26-${registration.id.replace(/-/g, "").slice(0, 6).toUpperCase()}`,
+      );
       setSubmitted(true);
     } catch (error) {
-      setSubmitError(
-        error instanceof Error
-          ? error.message
-          : "Something went wrong. Please try again.",
-      );
+      if (error instanceof ApiError && error.code === "duplicate_email") {
+        setDetailErrors((prev) => ({
+          ...prev,
+          email: "This email address is already registered.",
+        }));
+        setStep(1);
+        setSubmitError(
+          "This email address is already registered. Please review your details.",
+        );
+      } else if (
+        error instanceof ApiError &&
+        error.code === "validation_failed" &&
+        error.fields
+      ) {
+        const mapped: DetailErrors = {};
+        for (const [field, message] of Object.entries(error.fields)) {
+          const detailField = backendFieldToDetailField[field];
+          if (detailField) mapped[detailField] = message;
+        }
+        if (Object.keys(mapped).length > 0) {
+          setDetailErrors((prev) => ({ ...prev, ...mapped }));
+          setStep(1);
+        }
+        setSubmitError(error.message);
+      } else {
+        setSubmitError(
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.",
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
