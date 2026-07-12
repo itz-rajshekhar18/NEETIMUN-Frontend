@@ -1,4 +1,7 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+// Requests are same-origin: this app's own next.config.ts rewrites /api/*
+// server-side to the real backend, so the browser only ever talks to this
+// origin and the admin session cookie is first-party here. No base URL is
+// needed client-side.
 
 export type ApiErrorPayload = {
   code: string;
@@ -30,18 +33,10 @@ export async function apiRequest<T>(
   path: string,
   init?: RequestInit,
 ): Promise<{ data: T; meta?: Record<string, unknown> }> {
-  if (!API_URL) {
-    throw new ApiError(0, {
-      code: "config_error",
-      message: "The application is not configured to reach the server.",
-    });
-  }
-
   let res: Response;
   try {
-    res = await fetch(`${API_URL}${path}`, {
+    res = await fetch(path, {
       ...init,
-      // Send/receive the admin session cookie on cross-origin requests.
       credentials: "include",
       headers: {
         "Content-Type": "application/json",

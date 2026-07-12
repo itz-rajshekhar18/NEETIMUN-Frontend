@@ -8,6 +8,12 @@ const SESSION_COOKIE = "neetimun_admin_session";
 // the cookie's *presence* to avoid flashing a protected page. The backend is
 // the real authority: it verifies the JWT and returns 401, at which point the
 // dashboard redirects to the login page.
+//
+// This check is only meaningful because /api/* is same-origin (proxied to the
+// backend via next.config.ts's rewrites) — the session cookie is therefore
+// first-party to this app and actually visible here. Do not remove the
+// rewrite proxy without re-evaluating this file: a cookie set directly by a
+// different-domain backend would never appear in request.cookies.
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const hasSession = request.cookies.has(SESSION_COOKIE);
